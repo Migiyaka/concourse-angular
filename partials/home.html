@@ -1,0 +1,33 @@
+<div class="main-content" ng-init="init()">
+	<div class="items-wrapper">
+		<h2>Items</h2>
+		<ul class="list-group">
+			<li class="list-group-item" ng-repeat="item in items">
+				<span class="item-property" ng-repeat="(key, value) in item"><span class="label label-primary">{{key}}</span> {{value}}</span>
+			</li>
+		</ul>
+		<button class="btn btn-primary btn-lg" ng-click="showAddItem()">Add New Item</button>
+	</div>
+	<div class="add-new-wrapper well well-lg" ng-show="addNewShow">
+		<form class="add-new-form" ng-submit="addNewItem()">
+			<div class="item-field clearfix" ng-repeat="(index, field) in fields">
+				<div class="item-field-col">
+					<label>Field Name</label>
+					<input type="text" class="form-control" ng-model="fields[index].name">
+				</div>
+				<div class="item-field-col">
+					<label>Field Value</label>
+					<input type="text" class="form-control" ng-model="fields[index].value">
+				</div>
+				<button class="btn btn-info" ng-click="deleteField($index)">Delete Field</button>
+			</div>
+			<div class="alert alert-danger login-alert" ng-show="emptyFields">
+				<i class="icon-remove-sign"></i><strong>Error!</strong> <span>Please fill out all the field names and values.</span>
+			</div>
+			<div class="item-buttons">
+				<button type="button" class="btn btn-success" ng-click="addNewField()">Add New Field</button>
+				<button type="submit" class="btn btn-primary">Create Item</button>
+			</div>
+		</form>
+	</div>
+</div>
